@@ -1,0 +1,19 @@
+<% content_for :head do %>
+  <%= tag.meta name: "description", content: SellRepo.config.description %>
+
+  <%= tag.meta property: "og:type", content: "website" %>
+  <%= tag.meta property: "og:title", content: SellRepo.store_name %>
+  <%= tag.meta property: "og:url", content: root_url %>
+  <%= tag.meta property: "og:description", content: SellRepo.config.description if SellRepo.config.description? %>
+  <%= tag.meta property: "og:image", content: opengraph_image_url if opengraph_image_url %>
+
+  <%= tag.meta name: "twitter:card", content: "summary" %>
+  <%= tag.meta name: "twitter:title", content: SellRepo.store_name %>
+  <%= tag.meta name: "twitter:description", content: SellRepo.config.description if SellRepo.config.description? %>
+  <%= tag.meta name: "twitter:image", content: opengraph_image_url if opengraph_image_url %>
+<% end %>
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <%= render @products %>
+  <%= render "admin_actions" if current_user&.admin? %>
+</div>

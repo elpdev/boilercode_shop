@@ -1,0 +1,15 @@
+<div class="prose mx-auto">
+  <h1>Rename License</h1>
+
+  <%= form_with model: @license do |form| %>
+    <div class="mb-4">
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true, autofocus: true %>
+    </div>
+
+    <div class="flex gap-2 items-center">
+      <%= form.submit "Save changes", class: "btn btn-secondary" %>
+      <%= link_to "Cancel", @license %>
+    </div>
+  <% end %>
+</div>

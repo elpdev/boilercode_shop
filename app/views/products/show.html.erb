@@ -1,0 +1,62 @@
+<% content_for :title, @product.name %>
+<% content_for :head do %>
+  <%= tag.meta name: "description", content: @product.short_description %>
+
+  <%= tag.meta property: "og:type", content: "website" %>
+  <%= tag.meta property: "og:title", content: @product.name %>
+  <%= tag.meta property: "og:url", content: product_url(@product) %>
+  <%= tag.meta property: "og:description", content: @product.short_description if @product.short_description? %>
+  <%= tag.meta property: "og:image", content: featured_image_url(@product) if featured_image_url(@product) %>
+
+  <%= tag.meta name: "twitter:card", content: "summary" %>
+  <%= tag.meta name: "twitter:title", content: @product.name %>
+  <%= tag.meta name: "twitter:description", content: @product.short_description if @product.short_description? %>
+  <%= tag.meta name: "twitter:image", content: featured_image_url(@product) if featured_image_url(@product) %>
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Product",
+      "name": "<%= @product.name %>"
+    }
+  </script>
+<% end %>
+
+<div class="max-w-5xl mx-auto">
+  <% if current_user&.admin? %>
+    <div class="bg-gray-100 rounded p-2 mb-4 flex justify-between text-xs">
+      <span>Admin actions</span>
+      <%= link_to "Edit product", edit_madmin_product_path(@product) %>
+    </div>
+  <% end %>
+
+  <figure class="border border-gray-200 rounded-md">
+    <%= featured_image @product %>
+  </figure>
+
+  <div class="mt-8 sm:flex items-center gap-8">
+    <div class="grow">
+      <h1 class="font-bold text-5xl"><%= @product.name %></h1>
+    </div>
+
+    <div class="flex justify-between items-center gap-4 mt-4 sm:mt-0">
+      <%= tag.span pricing(@product), class: "text-2xl" %>
+      <%= link_to "Buy now", product_checkout_path(@product), class: "btn btn-lg btn-primary" %>
+    </div>
+  </div>
+
+  <% if @product.description.present? %>
+    <hr class="my-8" />
+
+    <div class="prose mx-auto">
+      <%= markdown @product.description %>
+    </div>
+
+    <hr class="my-8" />
+
+    <div class="max-w-xl mx-auto flex items-center justify-between gap-8">
+      <h1 class="font-bold text-3xl">Are you ready?</h1>
+      <%= link_to "Buy now", product_checkout_path(@product), class: "btn btn-lg btn-primary" %>
+    </div>
+  <% end %>
+</div>

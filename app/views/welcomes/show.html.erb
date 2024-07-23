@@ -1,0 +1,71 @@
+<div class="prose mx-auto px-4">
+  <h1>Getting started with SellRepo</h1>
+  <p>Welcome! Let's get your store front set up.</p>
+
+
+  <h2>
+    <%= check_icon class: class_names("inline-block", "size-6", SellRepo.admin? ? "text-green-600" : "text-gray-500") %>
+    Create an admin user 👨‍💻
+  </h2>
+  <p>Open a terminal and run the following to create an admin user or grant admin to an existing user.</p>
+  <pre><code>bin/rails sellrepo:admin</code></pre>
+
+  <h2>
+    <%= check_icon class: class_names("inline-block", "size-6", SellRepo.store_name? ? "text-green-600" : "text-gray-500") %>
+    Set up your store 🛍️
+  </h2>
+  <p><%= link_to_unless user_signed_in?, "Login", login_path %> as an admin and <%= link_to_if current_user&.admin?, "configure your store", edit_madmin_config_path(SellRepo.config), target: :_blank %> with a name and support link.</p>
+
+  <h2>
+    <%= check_icon class: class_names("inline-block", "size-6", SellRepo.github_token? ? "text-green-600" : "text-gray-500") %>
+    Create a GitHub Access token 🔐
+  </h2>
+  <p>Next, we need to create a GitHub access token to connect customers to the repositories they've purchased access to.</p>
+  <p>We recommend setting <u>Expiration</u> to as long as possible.</p>
+
+  <p>Select the repositories this token will have access to. You can choose individual repositories or All repositories.</p>
+  <%= link_to image_tag("sellrepo/github-token-repositories.png", class: "max-h-48"), asset_path("sellrepo/github-token-repositories.png"), target: :_blank %>
+
+  <p>Finally, give the token Administration Read &amp; Write permission under Repository permissions to allow SellRepo to add collaborators.</p>
+  <%= link_to image_tag("sellrepo/github-token-permissions.png", class: "max-h-48"), asset_path("sellrepo/github-token-permissions.png"), target: :_blank %>
+
+  <p>Add this token as the <code>GITHUB_TOKEN</code> environment variable or to Rails credentials and restart the Rails server.</p>
+
+  <h2>
+    <%= check_icon class: class_names("inline-block", "size-6", SellRepo.payments? ? "text-green-600" : "text-gray-500") %>
+    Enable payments 💳
+  </h2>
+  <p>We also need your <%= link_to "Stripe API key", "https://dashboard.stripe.com#{"/test" if Rails.env.local?}/apikeys", target: :_blank %> to handle payments. Add this to environment variables or Rails credentials and restart the Rails server.</p>
+  <pre><code>STRIPE_PRIVATE_KEY=sk_12345</code></pre>
+
+  <% if Rails.env.production? %>
+    <p>Create a production webhook that points to <code>https://yourdomain.com/pay/webhooks/stripe</code> and add the webhook signing secret to environment variables or Rails credentials.</p>
+    <pre><code>STRIPE_SIGNING_SECRET=whsec_12345</code></pre>
+  <% elsif Rails.env.local? %>
+
+  <% end %>
+
+  <% if Rails.env.production? %>
+    <h2>
+      <%= check_icon class: class_names("inline-block", "size-6", SellRepo.smtp? ? "text-green-600" : "text-gray-500") %>
+      SMTP for sending emails 📬
+    </h2>
+    <p>Add SMTP credentials to environment variables or Rails credentials</p>
+
+    <pre><code>SMTP_HOST=smtp.example.com
+SMTP_DOMAIN=yourdomain.com
+SMTP_USERNAME=username
+SMTP_PASSWORD=password</code></pre>
+  <% end %>
+
+  <h2>
+    <%= check_icon class: class_names("inline-block", "size-6", Product.any? ? "text-green-600" : "text-gray-500") %>
+    Create a product 📦
+  </h2>
+  <p>Last but not least, <%= link_to_if current_user&.admin?, "add your first product", new_madmin_product_path, target: :_blank %> and share it with your audience. 🎉</p>
+
+  <% if Product.any? %>
+   <h2>Your store is ready 🎉</h2>
+   <p>Congratulations! You can start selling products. <%= link_to "Check it out", root_path %>!
+ <% end %>
+</div>

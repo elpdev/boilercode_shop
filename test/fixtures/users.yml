@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+admin:
+  email: admin@example.org
+  password_digest: <%= User.new(password: "password").password_digest %>
+  confirmed_at: 2024-07-08 14:20:08
+  unconfirmed_email:
+  first_name: Admin
+  last_name: User
+
+customer:
+  email: customer@example.org
+  password_digest: <%= User.new(password: "password").password_digest %>
+  confirmed_at: 2024-07-08 14:20:08
+  unconfirmed_email:
+  first_name: Customer
+  last_name: User

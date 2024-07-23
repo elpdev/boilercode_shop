@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+main:
+  store_name: My Store
+  company_name: Store, LLC
+  description: My personal store
+  logo_url: https://placehold.co/120x40.png
+  opengraph_image_url: https://placehold.co/600x400.png
+  support_url: https://example.org
