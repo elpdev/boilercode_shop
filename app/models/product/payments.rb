@@ -5,16 +5,10 @@ module Product::Payments
     scope :one_time, -> { where(interval_count: nil) }
     scope :recurring, -> { where.not(interval_count: nil) }
 
-    validates :amount_in_cents, presence: true
     validates :stripe_price_id, format: { allow_blank: true, with: /\Aprice_.+\z/ }
-    validate :price_id_exists
 
     before_validation :sync_stripe_price, if: :stripe_price_id_changed?
     before_validation :sync_lemon_squeezy_price, if: :lemon_squeezy_variant_id_changed?
-  end
-
-  def price_id_exists
-    errors.add(:base, "Stripe or LemonSqueezy ID is required") unless stripe_price_id? || lemon_squeezy_variant_id?
   end
 
   def sync_stripe_price
@@ -34,11 +28,12 @@ module Product::Payments
 
   def sync_lemon_squeezy_price
     if lemon_squeezy_variant_id?
-      variant = LemonSqueezy::Variant.retrieve(id: lemon_squeezy_variant_id)
+      price = ::LemonSqueezy::Price.list(variant_id: lemon_squeezy_variant_id).data.first
+
       assign_attributes(
-        amount_in_cents: variant.price,
-        interval: (variant.is_subscription ? variant.interval : nil),
-        interval_count: (variant.is_subscription ? variant.interval_count : nil),
+        amount_in_cents: price.unit_price,
+        interval: (price.category == "subscription" ? price.renewal_interval_unit: nil),
+        interval_count: (price.category == "subscription" ? price.renewal_interval_quantity: nil),
       )
     elsif lemon_squeezy_variant_id_was.present?
       assign_attributes(amount_in_cents: nil, interval: nil, interval_count: nil)

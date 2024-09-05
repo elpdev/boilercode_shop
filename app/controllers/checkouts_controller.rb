@@ -20,6 +20,11 @@ class CheckoutsController < ApplicationController
   end
 
   def stripe_checkout
+    unless @product.stripe_price_id?
+      redirect_to @product, alert: "Add a Stripe Price ID to this product to checkout."
+      return
+    end
+
     args = {
       mode: @product.interval? ? :subscription : :payment,
       line_items: @product.stripe_price_id,
@@ -44,6 +49,11 @@ class CheckoutsController < ApplicationController
   end
 
   def lemon_squeezy_checkout
+    unless @product.lemon_squeezy_variant_id?
+      redirect_to @product, alert: "Add a LemonSqueezy Variant ID to this product to checkout."
+      return
+    end
+
     payment_processor = current_user.set_payment_processor(:lemon_squeezy)
     checkout_session = payment_processor.checkout(
       variant_id: @product.lemon_squeezy_variant_id,
