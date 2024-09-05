@@ -26,7 +26,7 @@ body {
   }
 
   label {
-    @apply block text-sm font-medium mb-2 dark:text-white;
+    @apply block text-sm font-medium mb-2;
   }
 
   input[type=text], input[type=email], input[type=password], .form-control {
