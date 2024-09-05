@@ -1,8 +1,5 @@
-require "html_pipeline/convert_filter/markdown_filter"
-
 module MarkdownHelper
-  def markdown(text, pipeline: nil)
-    pipeline ||= HTMLPipeline.new(convert_filter: HTMLPipeline::ConvertFilter::MarkdownFilter.new)
-    pipeline.call(text)[:output].html_safe
+  def markdown(text, **options)
+    Commonmarker.to_html(text, options: options).html_safe
   end
 end

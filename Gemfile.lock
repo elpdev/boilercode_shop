@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/excid3/madmin.git
-  revision: 4569aea4d446ccb105d33baa739611b24789bc40
+  revision: 94f732ab259368ec4034487686f2db0125700dae
   specs:
     madmin (1.2.11)
       importmap-rails
@@ -207,7 +207,7 @@ GEM
       activesupport (>= 5.2.0)
     net-http (0.4.1)
       uri
-    net-imap (0.4.15)
+    net-imap (0.4.16)
       date
       net-protocol
     net-pop (0.1.2)
@@ -297,7 +297,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    reline (0.5.9)
+    reline (0.5.10)
       io-console (~> 0.5)
     revise_auth (0.8.0)
       bcrypt (~> 3.1)
@@ -313,7 +313,7 @@ GEM
       rubocop-ast (>= 1.32.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.32.2)
+    rubocop-ast (1.32.3)
       parser (>= 3.3.1.0)
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)

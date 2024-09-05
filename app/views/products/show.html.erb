@@ -49,7 +49,7 @@
     <hr class="my-8" />
 
     <div class="prose mx-auto">
-      <%= markdown @product.description %>
+      <%= markdown @product.description, parse: {smart: true}, render: {unsafe: true}, extension: {tagfilter: false} %>
     </div>
 
     <hr class="my-8" />

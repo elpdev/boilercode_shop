@@ -64,7 +64,6 @@ group :test do
 end
 
 gem "commonmarker", "~> 1.1"
-gem "html-pipeline", "~> 3.2"
 gem "lemonsqueezy", "~> 1.0"
 gem "madmin", github: "excid3/madmin"
 gem "mailbin", "~> 0.1.0"
