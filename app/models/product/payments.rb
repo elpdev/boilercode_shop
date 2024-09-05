@@ -37,8 +37,8 @@ module Product::Payments
       variant = LemonSqueezy::Variant.retrieve(id: lemon_squeezy_variant_id)
       assign_attributes(
         amount_in_cents: variant.price,
-        interval: variant.interval,
-        interval_count: variant.interval_count,
+        interval: (variant.is_subscription ? variant.interval : nil),
+        interval_count: (variant.is_subscription ? variant.interval_count : nil),
       )
     elsif lemon_squeezy_variant_id_was.present?
       assign_attributes(amount_in_cents: nil, interval: nil, interval_count: nil)
