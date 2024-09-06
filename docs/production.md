@@ -211,3 +211,8 @@ bin/rails sellrepo:admin
 ```
 
 A random password will be generated and printed out. You can change your password after logging in and adding your SMTP credentials.
+
+
+## Error Monitoring
+
+SellRepo comes with Honeybadger preinstalled for monitoring errors. You can add your Honeybadger API key through the `HONEYBADGER_API_KEY` environment variable or Rails credentials.
