@@ -16,7 +16,7 @@ module ProductsHelper
   end
 
   def pricing(product)
-    return unless product.amount_in_cents?
+    return if product.amount_in_cents.blank?
     amount = number_to_currency(product.amount_in_cents / 100.0)
     if product.interval?
       interval = product.interval_count == 1 ? product.interval : pluralize(product.interval_count, product.interval)
