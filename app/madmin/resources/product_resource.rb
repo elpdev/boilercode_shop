@@ -28,7 +28,7 @@ class ProductResource < Madmin::Resource
   scope :recurring
 
   member_action do
-    link_to "View", main_app.product_path(@record)
+    link_to "View", main_app.product_path(@record), target: :_blank
   end
 
   # Uncomment this to customize the display name of records in the admin area.
