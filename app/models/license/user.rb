@@ -3,7 +3,7 @@ class License::User < ApplicationRecord
 
   validates :github_username, presence: true, uniqueness: { scope: :license_id }
 
-  after_create :add_to_github
+  before_create :add_to_github
   before_destroy :remove_from_github
 
   def github_url
@@ -16,12 +16,18 @@ class License::User < ApplicationRecord
 
   def add_to_github
     GithubClient.new.add_collaborator(repository: license.product.github_repo, username: github_username)
+  rescue GithubClient::UnprocessableEntity => e
+    message = JSON.parse(e.message)
+    errors.add :base, "Whoops! GitHub returned an error: #{message}"
+    throw :abort
   end
 
   # Don't remove if there are other License::User with the same github_username for this product
   def remove_from_github
     return if other_active_licenses?
     GithubClient.new.remove_collaborator(repository: license.product.github_repo, username: github_username)
+  rescue GitHubClient::Error
+    # The user could have been removed from GitHub already so we can safely ignore that
   end
 
   def other_active_licenses?
