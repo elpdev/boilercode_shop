@@ -20,8 +20,7 @@ class Checkout::ReturnsController < ApplicationController
         (cs = ::Stripe::Checkout::Session.retrieve(checkout_session_id)) &&
         cs.status == "complete" &&
         cs.amount_total == 0 &&
-        cs.metadata["user_id"] == current_user.id.to_s &&
-        (product = Product.find_by(cs.metadata["product_id"]))
+        (product = Product.find_by(id: cs.metadata["product_id"]))
 
       license = current_user.licenses.create!(
         product: product,
@@ -29,8 +28,24 @@ class Checkout::ReturnsController < ApplicationController
         state: :active,
         allowed_users: product.allowed_users
       )
+      redirect_to license
 
+    elsif (order_id = params[:lemon_squeezy_order_id]) &&
+      (order = ::LemonSqueezy::Order.retrieve(id: order_id)) &&
+      order.status == "paid" &&
+      order.total == 0 &&
+      (product = Product.find_by(lemon_squeezy_variant_id: order.first_order_item.variant_id))
+
+      license = current_user.licenses.create!(
+        product: product,
+        name: "#{product.name} License",
+        state: :active,
+        allowed_users: product.allowed_users
+      )
       redirect_to license
     end
+
+  rescue ::Stripe::StripeError, ::LemonSqueezy::Error
+    redirect_to license_path
   end
 end
