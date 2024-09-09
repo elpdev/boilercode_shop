@@ -13,7 +13,7 @@ class BillingsController < ApplicationController
   end
 
   def stripe
-    portal = current_user.payment_processor.billing_portal
+    portal = current_user.payment_processor.billing_portal(return_url: root_url)
     redirect_to portal.url, allow_other_host: true
   end
 
