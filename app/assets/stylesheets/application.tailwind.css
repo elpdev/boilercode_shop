@@ -13,6 +13,10 @@ body {
     @apply py-2 px-4 rounded no-underline font-bold inline-block;
   }
 
+  .btn-sm {
+    @apply py-1 px-2;
+  }
+
   .btn-lg {
     @apply py-4 px-6 rounded-md;
   }

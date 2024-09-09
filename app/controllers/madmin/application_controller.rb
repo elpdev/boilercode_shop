@@ -2,6 +2,8 @@ module Madmin
   class ApplicationController < Madmin::BaseController
     before_action :authenticate_admin_user
 
+    impersonates :user
+
     def authenticate_admin_user
       # TODO: Add your authentication logic here
 

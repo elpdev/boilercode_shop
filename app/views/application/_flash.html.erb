@@ -5,3 +5,5 @@
     <%= render "toast", message: alert, icon: :warning if alert %>
   </div>
 </div>
+
+<%= render "impersonating" if current_user != true_user %>

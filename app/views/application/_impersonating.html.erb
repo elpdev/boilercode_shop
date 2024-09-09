@@ -1,0 +1,4 @@
+<div class="bg-gray-700 text-white text-sm text-center py-2">
+  Impersonating <%= link_to "#{current_user.name} (#{current_user.email})", madmin_user_path(current_user), class: "underline" %>
+  <%= button_to "Logout", madmin_user_impersonate_path(current_user), method: :delete, form_class: "inline-block", class: "btn btn-secondary btn-sm ml-2" %>
+</div>

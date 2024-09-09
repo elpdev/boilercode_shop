@@ -20,6 +20,10 @@ class UserResource < Madmin::Resource
   scope :admins
   scope :customers
 
+  member_action do
+    button_to "Impersonate", main_app.routes.url_helpers.madmin_user_impersonate_path(@record), target: :_blank
+  end
+
   # Uncomment this to customize the display name of records in the admin area.
   # def self.display_name(record)
   #   record.name

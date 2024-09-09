@@ -11,7 +11,9 @@ namespace :madmin, path: :admin do
     resources :subscriptions
   end
   resources :products
-  resources :users
+  resources :users do
+    resource :impersonate, module: :users
+  end
   namespace :active_storage do
     resources :attachments
   end
