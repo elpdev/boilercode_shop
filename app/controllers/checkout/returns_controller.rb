@@ -13,7 +13,7 @@ class Checkout::ReturnsController < ApplicationController
     @charge_or_subscription = Pay.sync(params)
   end
 
-  def handle_free_stripe_license
+  def handle_free_licenses
     return if @charge_or_subscription.present?
 
     if (checkout_session_id = params[:stripe_checkout_session_id]) &&
