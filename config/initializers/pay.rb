@@ -9,12 +9,13 @@ module SubscriptionExtensions
 
   def create_license
     user.licenses.where(
+      product: product,
+      pay_subscription: self
+    ).first_or_create!(
       state: :active,
       name: "#{product.name} License",
-      product: product,
-      pay_subscription: self,
       allowed_users: product.allowed_users
-    ).first_or_create!
+    )
   end
 
   def user
@@ -47,12 +48,13 @@ module ChargeExtensions
 
   def create_license
     user.licenses.where(
+      product: product,
+      pay_charge: self
+    ).first_or_create!(
       state: :active,
       name: "#{product.name} License",
-      product: product,
-      pay_charge: self,
       allowed_users: product.allowed_users
-    ).first_or_create!
+    )
   end
 
   def user
