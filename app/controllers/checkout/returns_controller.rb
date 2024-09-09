@@ -1,7 +1,7 @@
 class Checkout::ReturnsController < ApplicationController
   before_action :authenticate_user!
   before_action :sync_params
-  before_action :handle_free_licenses, if: ->{ @charge_or_subscription.nil? }
+  before_action :handle_free_licenses, if: -> { @charge_or_subscription.nil? }
 
   def show
     redirect_to @charge_or_subscription&.license || licenses_path
@@ -26,7 +26,7 @@ class Checkout::ReturnsController < ApplicationController
       current_user.licenses(
         product: product,
         name: "#{product.name} License",
-        state: :active
+        state: :active,
         allowed_users: product.allowed_users
       )
     end
