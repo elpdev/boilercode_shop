@@ -20,15 +20,17 @@ class Checkout::ReturnsController < ApplicationController
         (cs = ::Stripe::Checkout::Session.retrieve(checkout_session_id)) &&
         cs.status == "complete" &&
         cs.amount_total == 0 &&
-        cs.metadata["user_id"] == current_user.id &&
+        cs.metadata["user_id"] == current_user.id.to_s &&
         (product = Product.find_by(cs.metadata["product_id"]))
 
-      current_user.licenses(
+      license = current_user.licenses.create!(
         product: product,
         name: "#{product.name} License",
         state: :active,
         allowed_users: product.allowed_users
       )
+
+      redirect_to license
     end
   end
 end
