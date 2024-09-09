@@ -25,16 +25,17 @@ class CheckoutsController < ApplicationController
       return
     end
 
-    args = {
-      mode: @product.interval? ? :subscription : :payment,
-      line_items: @product.stripe_price_id,
-      success_url: return_url,
-      cancel_url: product_url(@product, host: request.host)
-    }
-
     metadata = {
       user_id: current_user.id,
       product_id: @product.id
+    }
+
+    args = {
+      mode: @product.interval? ? :subscription : :payment,
+      line_items: @product.stripe_price_id,
+      metadata: metadata,
+      success_url: return_url,
+      cancel_url: product_url(@product, host: request.host)
     }
 
     if @product.interval?
