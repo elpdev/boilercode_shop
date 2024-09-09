@@ -13,4 +13,9 @@ class License < ApplicationRecord
   def can_add_users?
     users_count < allowed_users
   end
+
+  def archive
+    update(state: :inactive)
+    users.each(&:remove_from_github)
+  end
 end

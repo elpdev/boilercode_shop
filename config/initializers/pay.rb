@@ -31,8 +31,7 @@ module SubscriptionExtensions
   # Remove license users if subscription goes into an inactive state
   def update_license
     if %w[ paused unpaid canceled incomplete_expired ].include? status
-      license.update(state: :inactive)
-      license.license_users.each(&:remove_from_github)
+      license.archive
     end
   end
 end

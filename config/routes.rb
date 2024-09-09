@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resources :licenses do
+    resource :archive, module: :licenses
     resources :license_users, path: :users, controller: "licenses/users"
   end
   resource :billing, only: [ :show ]

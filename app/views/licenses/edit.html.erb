@@ -12,4 +12,10 @@
       <%= link_to "Cancel", @license %>
     </div>
   <% end %>
+
+  <hr />
+
+  <h2>Archive License</h2>
+  <p>⚠️ You will lose all access to this license after archiving.</p>
+  <%= button_to "Archive", license_archive_path(@license), class: "btn btn-secondary", data: {turbo_confirm: "Are you sure?"} %>
 </div>
