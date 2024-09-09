@@ -20,12 +20,12 @@ module SubscriptionExtensions
 
   def user
     return if metadata&.dig("user_id").blank?
-    @user ||= User.find_by(metadata["user_id"])
+    @user ||= User.find_by(id: metadata["user_id"])
   end
 
   def product
     return if metadata&.dig("product_id").blank?
-    @product ||= Product.find(metadata["product_id"])
+    @product ||= Product.find_by(id: metadata["product_id"])
   end
 
   # Remove license users if subscription goes into an inactive state
@@ -57,12 +57,12 @@ module ChargeExtensions
 
   def user
     return if metadata&.dig("user_id").blank?
-    @user ||= User.find_by(metadata["user_id"])
+    @user ||= User.find_by(id: metadata["user_id"])
   end
 
   def product
     return if metadata&.dig("product_id").blank?
-    @product ||= Product.find(metadata["product_id"])
+    @product ||= Product.find_by(id: metadata["product_id"])
   end
 end
 
