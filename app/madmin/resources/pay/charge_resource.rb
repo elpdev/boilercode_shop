@@ -13,7 +13,6 @@ class Pay::ChargeResource < Madmin::Resource
   attribute :metadata, index: false
   attribute :created_at, form: false
   attribute :updated_at, form: false, index: false
-  attribute :stripe_receipt_url, :string, index: false
   attribute :brand, index: false
   attribute :last4, index: false
   attribute :exp_month, index: false
