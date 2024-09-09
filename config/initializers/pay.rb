@@ -42,7 +42,6 @@ module ChargeExtensions
   included do
     has_one :license, inverse_of: :pay_charge
     after_create_commit :create_license, if: -> { product }
-    after_update_commit :update_license
   end
 
   def create_license
