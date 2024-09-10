@@ -6,6 +6,8 @@ class License::User < ApplicationRecord
   before_create :add_to_github
   before_destroy :remove_from_github
 
+  normalizes :github_username, with: -> { _1.strip }
+
   def github_url
     "https://github.com/#{github_username}"
   end
