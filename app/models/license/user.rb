@@ -16,8 +16,8 @@ class License::User < ApplicationRecord
 
   def add_to_github
     GithubClient.new.add_collaborator(repository: license.product.github_repo, username: github_username)
-  rescue GithubClient::UnprocessableEntity => e
-    message = JSON.parse(e.message)
+  rescue GithubClient::Error => e
+    message = JSON.parse(e.message).dig("message")
     errors.add :base, "Whoops! GitHub returned an error: #{message}"
     throw :abort
   end
