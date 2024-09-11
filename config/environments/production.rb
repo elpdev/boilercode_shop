@@ -97,9 +97,10 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-  config.after_initialize do
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
+  config.to_prepare do
+    Rails.application.config.action_mailer.delivery_method = :smtp
+    Rails.application.config.action_mailer.default_url_options = { host: SellRepo.smtp_domain }
+    Rails.application.config.action_mailer.smtp_settings = {
       address: SellRepo.smtp_host,
       port: 587,
       domain: SellRepo.smtp_domain,
@@ -108,6 +109,5 @@ Rails.application.configure do
       authentication:  "plain",
       enable_starttls: true
     }
-    config.action_mailer.default_url_options = { host: SellRepo.smtp_domain }
   end
 end
