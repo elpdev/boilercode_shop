@@ -68,23 +68,34 @@ lemon_squeezy:
 
 ## GitHub Token
 
-Create a GitHub token with the following settings:
+Visit https://github.com/settings/personal-access-tokens/new to create a new fine-grained access token
 
 1. Expiration
 
 We recommend 90 days or 1 year expiration. You will need to update this key periodically.
 
-2. Repositories
+2. Resource owner
 
-Select the repositories you plan to sell or All repositories.
+Choose the owner of the repositories you'll be selling. If you're using a GitHub organization and it doesn't show here, enable personal access tokens in the Org settings.
+
+3. Repositories
+
+Select All repositories (recommended) or select the individual repositories you wish to sell. You'll need to generate a new API token to add more repositories if you don't select All repositories.
 
 ![GitHub token repositories](../app/assets/images/sellrepo/github-token-repositories.png)
 
-3. Permissions
+4. Permissions
 
 Under "Administration" set "Read & Write" access. This is required to add customers to your GitHub repositories.
 
 ![GitHub token permissions](../app/assets/images/sellrepo/github-token-permissions.png)
+
+5. Add the token as `GITHUB_TOKEN` to environment variables or in production Rails credentials with `bin/rails credentials:edit --environment=production`
+
+```yaml
+github:
+  token: github_pat_1234
+```
 
 ### Sending email in production
 

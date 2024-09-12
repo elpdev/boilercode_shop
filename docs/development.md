@@ -26,21 +26,33 @@ A random password will be generated and printed out. You can change your passwor
 
 #### GitHub Tokens
 
-Create a new GitHub Token to add customers to repositories.
+Visit https://github.com/settings/personal-access-tokens/new to create a new fine-grained access token
 
-1. Set the Expiration to as long as you would like. For example, 90 days or 1 year are good options so you don't have to update it often.
-2. Choose the repositories this token has access to. We recommend choosing the specific repositories you wish to sell.
-3. Add the Administration Read & Write permission.
-4. Save a copy of the token somewhere safe.
-5. Add to SellRepo
+1. Expiration
 
-You can set the `GITHUB_TOKEN=abcd` environment variable and restart your Rails application or use Rails credentials.
+We recommend 90 days or 1 year expiration. You will need to update this key periodically.
 
-For Rails credentials, use `bin/rails credentials:edit --environment=development`
+2. Resource owner
+
+Choose the owner of the repositories you'll be selling. If the GitHub organization doesn't show here, enable personal access tokens in the Org settings.
+
+3. Repositories
+
+Select All repositories (recommended) or select the individual repositories you wish to sell. You'll need to generate a new API token to add more repositories if you don't select All repositories.
+
+![GitHub token repositories](../app/assets/images/sellrepo/github-token-repositories.png)
+
+4. Permissions
+
+Under "Administration" set "Read & Write" access. This is required to add customers to your GitHub repositories.
+
+![GitHub token permissions](../app/assets/images/sellrepo/github-token-permissions.png)
+
+5. Add the token as `GITHUB_TOKEN` to environment variables or in production Rails credentials with `bin/rails credentials:edit --environment=development`
 
 ```yaml
 github:
-  token: sk_test_1234
+  token: github_pat_1234
 ```
 
 #### Payments
