@@ -1,3 +1,9 @@
+Pay.setup do |config|
+  # For use in the receipt/refund/renewal mailers
+  config.business_name = SellRepo.company_name
+  config.application_name = SellRepo.store_name
+end
+
 module SubscriptionExtensions
   extend ActiveSupport::Concern
 
