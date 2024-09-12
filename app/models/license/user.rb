@@ -33,6 +33,6 @@ class License::User < ApplicationRecord
   end
 
   def other_active_licenses?
-    License::User.excluding(self).joins(:license).where(licenses: { state: :active, product_id: license.product_id }).any?
+    License::User.joins(:license).where(github_username: github_username, licenses: { state: :active, product_id: license.product_id }).excluding(self).any?
   end
 end
