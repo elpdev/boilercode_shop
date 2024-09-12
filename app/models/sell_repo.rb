@@ -18,19 +18,19 @@ module SellRepo
     end
 
     def store_name?
-      config.store_name?
+      config&.store_name?
     end
 
     def store_name
-      config.store_name || "My Store"
+      config&.store_name || "My Store"
     end
 
     def company_name
-      config.company_name || "Example, LLC"
+      config&.company_name || "Example, LLC"
     end
 
     def support_url
-      config.support_url
+      config&.support_url
     end
 
     def github_token
@@ -67,6 +67,8 @@ module SellRepo
 
     def config
       Current.config ||= Config.first_or_create
+    rescue ActiveRecord::StatementInvalid
+      # This can happen when Rails is loading fixtures and Pay tries to access the database for the store name.
     end
   end
 end

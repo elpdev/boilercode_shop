@@ -1,9 +1,3 @@
-Pay.setup do |config|
-  # For use in the receipt/refund/renewal mailers
-  config.business_name = SellRepo.company_name
-  config.application_name = SellRepo.store_name
-end
-
 module SubscriptionExtensions
   extend ActiveSupport::Concern
 
@@ -75,4 +69,10 @@ end
 Rails.configuration.to_prepare do
   Pay::Charge.include ChargeExtensions
   Pay::Subscription.include SubscriptionExtensions
+
+  Pay.setup do |config|
+    # For use in the receipt/refund/renewal mailers
+    config.business_name = SellRepo.company_name
+    config.application_name = SellRepo.store_name
+  end
 end
