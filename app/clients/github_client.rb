@@ -32,13 +32,13 @@ class GithubClient < ApplicationClient
   def remove_collaborator(repository:, username:)
     if collaborator?(repository: repository, username: username)
       delete "/repos/#{repository}/collaborators/#{username}"
-    elsif (invitation = invitations(repository: repository).find{ _1.invitee.login == username })
+    elsif (invitation = invitations(repository: repository).find { _1.invitee.login == username })
       delete_invitation(repository: repository, id: invitation.id)
     end
   end
 
   def invitations(repository:)
-    get "/repos/#{repository}/invitations", query: {per_page: 100}
+    get "/repos/#{repository}/invitations", query: { per_page: 100 }
   end
 
   def delete_invitation(repository:, id:)
