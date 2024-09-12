@@ -76,11 +76,11 @@ We recommend 90 days or 1 year expiration. You will need to update this key peri
 
 2. Resource owner
 
-Choose the owner of the repositories you'll be selling. If you're using a GitHub organization and it doesn't show here, enable personal access tokens in the Org settings.
+Choose the owner of the repositories you'll be selling. If the GitHub organization doesn't show here, enable personal access tokens in the Org settings.
 
 3. Repositories
 
-Select All repositories (recommended) or select the individual repositories you wish to sell. You'll need to generate a new API token to add more repositories if you don't select All repositories.
+Select "All repositories" or select the specific repositories you wish to sell. You'll need to generate a new API token to add more repositories if you don't select All repositories.
 
 ![GitHub token repositories](../app/assets/images/sellrepo/github-token-repositories.png)
 
@@ -90,7 +90,7 @@ Under "Administration" set "Read & Write" access. This is required to add custom
 
 ![GitHub token permissions](../app/assets/images/sellrepo/github-token-permissions.png)
 
-5. Add the token as `GITHUB_TOKEN` to environment variables or in production Rails credentials with `bin/rails credentials:edit --environment=production`
+5. Add the token as `GITHUB_TOKEN` to environment variables or in Rails credentials with `bin/rails credentials:edit --environment=production`
 
 ```yaml
 github:

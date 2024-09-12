@@ -18,15 +18,18 @@
 
   <h2>
     <%= check_icon class: class_names("inline-block", "size-6", SellRepo.github_token? ? "text-green-600" : "text-gray-500") %>
-    Create a GitHub Access token 🔐
+    Create a GitHub Access Token 🔐
   </h2>
-  <p>Next, we need to create a GitHub access token to connect customers to the repositories they've purchased access to.</p>
-  <p>We recommend setting <u>Expiration</u> to as long as possible.</p>
+  <p>Next, we need to create a GitHub access token to connect customers to the repositories they've purchased access to. GitHub Organizations allow setting the permission so customers cannot push code to the repository which is what we recommend but personal repositories work too.</p>
 
-  <p>Select the repositories this token will have access to. You can choose individual repositories or All repositories.</p>
+  <p>For Expiration, we recommend 90 days or 1 year expiration. You will need to update this key periodically.</p>
+
+  <p>For "Resource owner", choose the owner of the repositories you'll be selling. If the GitHub organization doesn't show here, enable personal access tokens in the Org settings.</p>
+
+  <p>Select "All repositories" or select the specific repositories you wish to sell. You'll need to generate a new API token to add more repositories if you don't select All repositories.</p>
   <%= link_to image_tag("sellrepo/github-token-repositories.png", class: "max-h-48"), asset_path("sellrepo/github-token-repositories.png"), target: :_blank %>
 
-  <p>Finally, give the token Administration Read &amp; Write permission under Repository permissions to allow SellRepo to add collaborators.</p>
+  <p>Under "Administration" set "Read &amp; Write" access. This is required to add customers to your GitHub repositories.</p>
   <%= link_to image_tag("sellrepo/github-token-permissions.png", class: "max-h-48"), asset_path("sellrepo/github-token-permissions.png"), target: :_blank %>
 
   <p>Add this token as the <code>GITHUB_TOKEN</code> environment variable or to Rails credentials and restart the Rails server.</p>
