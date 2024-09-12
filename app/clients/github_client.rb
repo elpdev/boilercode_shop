@@ -13,6 +13,13 @@ class GithubClient < ApplicationClient
     get "/repos/#{repository}"
   end
 
+  def collaborator?(repository:, username:)
+    get "/repos/#{repository}/collaborators/#{username}"
+    true
+  rescue GithubClient::NotFound
+    false
+  end
+
   def add_collaborator(repository:, username:)
     # Permissions are only allowed on Organization repositories
     if user(repository.split("/").first).type == "Organization"
@@ -23,7 +30,19 @@ class GithubClient < ApplicationClient
   end
 
   def remove_collaborator(repository:, username:)
-    delete "/repos/#{repository}/collaborators/#{username}"
+    if collaborator?(repository: repository, username: username)
+      delete "/repos/#{repository}/collaborators/#{username}"
+    elsif (invitation = invitations(repository: repository).find{ _1.invitee.login == username })
+      delete_invitation(repository: repository, id: invitation.id)
+    end
+  end
+
+  def invitations(repository:)
+    get "/repos/#{repository}/invitations", query: {per_page: 100}
+  end
+
+  def delete_invitation(repository:, id:)
+    delete "/repos/#{repository}/invitations/#{id}"
   end
 
   def default_headers
