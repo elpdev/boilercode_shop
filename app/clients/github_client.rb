@@ -15,8 +15,7 @@ class GithubClient < ApplicationClient
 
   def add_collaborator(repository:, username:)
     # Permissions are only allowed on Organization repositories
-    user = repository.split("/").first
-    if user.type == "Organization"
+    if user(repository.split("/").first).type == "Organization"
       put "/repos/#{repository}/collaborators/#{username}", body: {permission: :triage}
     else
       put "/repos/#{repository}/collaborators/#{username}"
