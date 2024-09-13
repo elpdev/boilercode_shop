@@ -7,12 +7,14 @@ Your personal storefront for selling access to GitHub repositories.
 To get started with SellRepo, we recommend creating a new repository and cloning the application into it. This will allow you to merge updates with git in the future.
 
 ```bash
-git clone https://github.com/excid3/sellrepo
+git clone https://github.com/sellrepo/sellrepo
 cd sellrepo
-git remote rename origin upstream
+
+# Rename origin remote to sellrepo
+git remote rename origin sellrepo
 
 # Add your repository as origin
-git remote
+git remote add origin git@github.com:your-account/your-repo.git
 
 # Push to your repository
 git push -u origin main
