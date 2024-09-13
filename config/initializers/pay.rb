@@ -64,6 +64,10 @@ module ChargeExtensions
     return if metadata&.dig("product_id").blank?
     @product ||= Product.find_by(id: metadata["product_id"])
   end
+
+  def pdf_product_name
+    product&.name || super
+  end
 end
 
 Rails.configuration.to_prepare do
