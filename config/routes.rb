@@ -17,7 +17,14 @@ Rails.application.routes.draw do
     resource :archive, module: :licenses
     resources :license_users, path: :users, controller: "licenses/users"
   end
-  resource :billing, only: [ :show ]
+  resource :billing do
+    resource :info, module: :billings
+    resources :charges, module: :billings do
+      member do
+        get :invoice
+      end
+    end
+  end
   resource :welcome
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
