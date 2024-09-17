@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/pay-rails/pay.git
-  revision: 9c7ba256e04e1a0eae8c30366490da9b36ce8a2a
+  revision: 88625ed0d317d008d9321e2dab916515b0d8b727
   specs:
     pay (8.0.0)
       rails (>= 6.0.0)
@@ -151,7 +151,7 @@ GEM
       activesupport (>= 6.1)
     hashdiff (1.1.1)
     honeybadger (5.15.6)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     image_processing (1.13.0)
       mini_magick (>= 4.9.5, < 5)
