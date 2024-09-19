@@ -3,8 +3,8 @@
 This application is preconfigured for [DevContainers](https://guides.rubyonrails.org/getting_started_with_devcontainer.html) or you can use a local Ruby install to run it. We like using [Mise](https://mise.jdx.dev/) to install Ruby.
 
 ```ruby
-# Install dependencies
-bundle
+# Install dependencies, create database, etc
+bin/setup
 
 # Run Rails
 bin/rails server
