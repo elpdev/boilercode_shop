@@ -8,13 +8,6 @@ GIT
       propshaft
       rails (>= 7.0.0)
 
-GIT
-  remote: https://github.com/pay-rails/pay.git
-  revision: 70a6be12abe2e065998a9d41f195e6eea9799459
-  specs:
-    pay (8.0.0)
-      rails (>= 6.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -240,6 +233,8 @@ GEM
     parser (3.3.5.0)
       ast (~> 2.4.1)
       racc
+    pay (8.0.0)
+      rails (>= 6.0.0)
     pdf-core (0.10.0)
     pg (1.5.8)
     prawn (2.5.0)
@@ -457,7 +452,7 @@ DEPENDENCIES
   mailbin (~> 0.1.0)
   name_of_person (~> 1.1)
   pagy (~> 9.0)
-  pay!
+  pay (~> 8.0)
   pg (~> 1.5)
   pretender (~> 0.5.0)
   propshaft
