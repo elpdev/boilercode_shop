@@ -1,7 +1,8 @@
 class UserResource < Madmin::Resource
   # Attributes
   attribute :id, form: false
-  attribute :email
+  attribute :name, :string, index: true
+  attribute :email, index: true
   attribute :confirmed_at
   attribute :unconfirmed_email
   attribute :admin
