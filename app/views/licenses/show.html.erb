@@ -26,7 +26,7 @@
 
   <% if @license.users_count? %>
     <div class="mt-4">
-      <p>Check your email for an invitation from GitHub to join the repository. Once accepted, you can access the GitHub repository.</p>
+      <p>Check your email for an invitation from GitHub to join the repository. Once accepted, you can access the GitHub repository. If your invitation expired, remove and re-add your GitHub username to get a new invite.</p>
       <%= link_to "View on GitHub", "https://github.com/#{@license.product.github_repo}", target: :_blank, class: "btn btn-secondary" %>
     </div>
   <% end %>
