@@ -1,7 +1,7 @@
 class License::UserResource < Madmin::Resource
   # Attributes
   attribute :id, form: false
-  attribute :github_username
+  attribute :github_username, index: true
   attribute :created_at, form: false
   attribute :updated_at, form: false
 
