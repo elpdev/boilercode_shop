@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/excid3/madmin.git
-  revision: f600dd8e39d8dd66ea652a2ecf0cecf68f2c2557
+  revision: 5ae799d545314092e1433a171fb3337afad8ba39
   specs:
     madmin (1.2.11)
       importmap-rails
+      ostruct
       pagy (>= 3.5)
       propshaft
       rails (>= 7.0.0)
@@ -245,7 +246,7 @@ GEM
       prawn (>= 1.3.0, < 3.0.0)
     pretender (0.5.0)
       actionpack (>= 6.1)
-    propshaft (1.0.1)
+    propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
@@ -406,7 +407,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webmock (3.23.1)
+    webmock (3.24.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
