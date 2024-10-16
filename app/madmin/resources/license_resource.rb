@@ -9,7 +9,7 @@ class LicenseResource < Madmin::Resource
   attribute :name
   attribute :allowed_users, index: false
   attribute :users_count, form: false
-  attribute :created_at, form: false
+  attribute :created_at, form: false, index: true
   attribute :updated_at, form: false
 
   # Associations
