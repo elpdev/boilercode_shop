@@ -442,6 +442,7 @@ PLATFORMS
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin-23
+  arm64-darwin-24
   x86-linux
   x86-linux-gnu
   x86-linux-musl
@@ -491,4 +492,4 @@ DEPENDENCIES
   webmock (~> 3.23)
 
 BUNDLED WITH
-   2.5.22
+   2.5.23
