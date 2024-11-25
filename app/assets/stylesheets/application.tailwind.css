@@ -39,7 +39,7 @@ body {
 }
 
 .alert {
-  @apply text-center text-white bg-red-600 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5;
+  @apply text-center text-white bg-red-600 mb-8 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5;
 
   p {
     @apply text-sm/6 text-white m-0;
