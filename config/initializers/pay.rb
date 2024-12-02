@@ -79,4 +79,11 @@ Rails.configuration.to_prepare do
     config.business_name = SellRepo.company_name
     config.application_name = SellRepo.store_name
   end
+
+  # Use Inter font for full UTF-8 support in PDFs
+  # https://github.com/rsms/inter
+  Receipts.default_font = {
+    bold: Rails.root.join("app/assets/fonts/Inter-Bold.ttf"),
+    normal: Rails.root.join("app/assets/fonts/Inter-Regular.ttf")
+  }
 end
