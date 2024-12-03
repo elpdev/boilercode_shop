@@ -35,7 +35,8 @@ class CheckoutsController < ApplicationController
       line_items: @product.stripe_price_id,
       metadata: metadata,
       success_url: return_url,
-      cancel_url: product_url(@product, host: request.host)
+      cancel_url: product_url(@product, host: request.host),
+      allow_promotion_codes: true
     }
 
     if @product.interval?
