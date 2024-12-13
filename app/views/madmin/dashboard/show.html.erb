@@ -1,7 +1,7 @@
 <div class="prose">
   <h1>Admin Dashboard</h1>
 
-  <p>You have made <%= tag.strong number_to_currency((Pay::Charge.sum(:amount) - Pay::Charge.sum(:amount_refunded)) / 100.0) %> in sales. 🎉</p>
+  <p>You have made <strong><%= Pay::Charge.group(:currency).sum("amount - amount_refunded").map { Pay::Currency.format(_2, currency: _1) }.to_sentence %></strong> in sales. 🎉</p>
 
   <h4>Recent Licenses</h4>
   <ul class="text-sm">
