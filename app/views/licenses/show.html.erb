@@ -7,14 +7,14 @@
   </div>
 
   <h4>Product</h4>
-  <div class="flex space-x-3">
-    <figure class="my-0 h-16 aspect-video">
+  <div class="flex items-center space-x-3">
+    <figure class="not-prose h-16 aspect-video">
       <%= link_to featured_image(@license.product), @license.product %>
     </figure>
 
     <div>
       <%= link_to @license.product.name, @license.product, class: "no-underline font-bold" %>
-      <p class="mt-0">Purchased <%= l @license.created_at.to_date, format: :long %></p>
+      <p class="not-prose">Purchased <%= l @license.created_at.to_date, format: :long %></p>
     </div>
   </div>
 

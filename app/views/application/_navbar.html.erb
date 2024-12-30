@@ -18,18 +18,18 @@
              </button>
 
              <div data-dropdown-target="menu" class="hidden absolute top-4 right-0 z-10 mt-5 flex w-screen max-w-max">
-               <div class="text-sm bg-white shadow-lg rounded border overflow-hidden w-32">
+               <div class="text-sm bg-white shadow-lg rounded border border-gray-200 overflow-hidden w-32">
                  <% classes = "no-underline block pl-4 py-2 text-gray-900 bg-white hover:bg-gray-100 whitespace-nowrap focus:bg-gray-100" %>
                  <%= link_to "Account", profile_path, class: class_names(classes, "font-semibold" => request.path.start_with?(profile_path)) %>
                  <%= link_to "Billing", billing_path, class: classes %>
 
                 <% if current_user.admin? %>
-                  <hr class="border-t" />
+                  <hr class="border-t border-gray-200" />
                   <%= link_to "Admin", madmin_root_path, target: :_blank, class: classes %>
                   <%= link_to "Mailbin", mailbin_path, target: :_blank, class: classes if Rails.env.local? %>
                 <% end %>
 
-                 <hr class="border-t" />
+                 <hr class="border-t border-gray-200" />
 
                  <%= button_to "Logout", logout_path, method: :delete, form_class: "block", class: class_names(classes, "w-full text-left") %>
                </div>
