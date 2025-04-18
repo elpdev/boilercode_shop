@@ -252,7 +252,6 @@ GEM
     pay (8.3.0)
       rails (>= 6.0.0)
     pdf-core (0.10.0)
-    pg (1.5.9)
     pp (0.6.2)
       prettyprint
     prawn (2.5.0)
@@ -490,7 +489,6 @@ DEPENDENCIES
   name_of_person (~> 1.1)
   pagy (~> 9.0)
   pay (~> 8.0)
-  pg (~> 1.5)
   pretender (~> 0.5)
   propshaft
   puma (>= 5.0)
