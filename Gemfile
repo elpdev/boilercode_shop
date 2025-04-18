@@ -65,7 +65,7 @@ end
 
 gem "commonmarker", "~> 2.0"
 gem "honeybadger", "~> 5.15"
-gem "lemonsqueezy", "~> 1.0"
+gem "lemonsqueezy", "~> 1.1"
 gem "madmin", "~> 2.0"
 gem "mailbin", "~> 1.0"
 gem "name_of_person", "~> 1.1"
